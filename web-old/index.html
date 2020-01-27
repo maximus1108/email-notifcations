@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>Wooo</title>
+    <style>
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      h1 {
+        font-size: 3rem;
+        text-align: center;
+      }
+
+      .product-list {
+        width: calc(100% - 250px);
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .product {
+        width: 300px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .product-image {
+        height: 300px;
+        max-width: 300px;
+        object-fit: contain;
+      }
+
+      .product-figures {
+        margin-top: 10px;
+      }
+
+      .product-figures > span {
+        margin-right: 8px;
+      }
+
+      .cart {
+        width: 250px;
+        background-color: lightgray;
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50% );
+        min-height: 350px;
+        max-height: 80%;
+        overflow: auto;
+      }
+
+      h2 {
+        text-align: center;
+        margin: 5px 10px;
+      }
+
+      .product-description {
+        flex-grow: 1;
+      }
+
+      .product-btn {
+        margin: 20px 0 0;
+        width: 30%;
+        border: 0;
+        outline: 0;
+        background-color: lightslategray;
+        color: white;
+        height: 30px;
+      }
+
+      .product-btn:hover {
+        cursor: pointer;
+        background-color: #778899ba;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Products</h1>
+    <div class='product-list'></div>
+    <div class='cart'>
+      <h2>Cart</h2>
+    </div>
+    <script>
+
+      const createMarkup = ({
+        image,
+        name,
+        description,
+        price,
+        stock
+      }) => `
+          <div class='product'>
+            <img class='product-image' src=${image} />
+            <h3>${name}</h3>
+            <span class="product-description">${description}</span>
+            <div class='product-figures'>
+              <span><strong>Price: </strong>£${price}</span>
+              <span><strong>Stock: </strong>${stock}</span>
+            </div>
+            <button class="product-btn">Add to Cart</button>
+          </div>
+        `;
+
+      const productList = document.querySelector('.product-list');
+      
+      fetch('/api')
+        .then(res => res.json())
+        .then(json => json.map(createMarkup))
+        .then(markupList => markupList.join(''))
+        .then(markup => productList.innerHTML = markup)
+
+    </script>
+  </body>
+</html>

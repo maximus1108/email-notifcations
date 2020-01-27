@@ -1,0 +1,29 @@
+[{
+  "id": "abc",
+  "name": "Sony Playstation 4",
+  "description": "Awesome console for playing latest games",
+  "image": "https://i5.walmartimages.com/asr/33de3a32-863c-4457-9cce-1fb65036d73c_1.93c6433ebb65dc7ef7d0a3d30dee21fc.jpeg?odnWidth=450&odnHeight=450&odnBg=ffffff",
+  "price": 400,
+  "stock": 10
+}, {
+  "id": "def",
+  "name": "Apple iPhone X",
+  "description": "Latest iPhone, perfect for keeping connected",
+  "image": "https://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg",
+  "price": 800,
+  "stock": 10
+}, {
+  "id": "123",
+  "name": "Samsung Q7C Series Television - 55\"",
+  "description": "High definition television for you favourite movies",
+  "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6202/6202119_sd.jpg;maxHeight=640;maxWidth=550",
+  "price": 1000,
+  "stock": 10
+}, {
+  "id": "xyz",
+  "name": "Bose SoundLink Around-Ear Wireless Headphones ",
+  "description": "Enjoy a better wireless experience with Bose® SoundLink® around-ear headphones II",
+  "image": "https://target.scene7.com/is/image/Target/GUEST_fa7f0974-8b91-41f3-8236-b684cbea0e18?wid=488&hei=488&fmt=pjpeg",
+  "price": 150,
+  "stock": 10
+}]

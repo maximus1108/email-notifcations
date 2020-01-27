@@ -1,0 +1,41 @@
+version: '3'
+services:
+  ui:
+    image: golang:1.13.0-alpine
+    working_dir: /app
+    volumes:
+      - ./cmd/web-ui:/app/cmd/web-ui
+      - ./web:/app/web
+    ports:
+      - "8086:8086"
+    command: go run cmd/web-ui/main.go
+    environment:
+      - API_HOST=api:8080
+    depends_on:
+      - api
+  api:
+    image: golang:1.13.0-alpine
+    working_dir: /app
+    volumes:
+      - ./cmd/web-api:/app/cmd/web-api
+      - ./go.mod:/app/go.mod
+      - ./go.sum:/app/go.sum
+    ports:
+      - "8088:8080"
+    command: sh -c "go test ./cmd/web-api/main.go && go run ./cmd/web-api/main.go"
+    environment:
+      - CGO_ENABLED=0
+      - MONOG_HOST=mongodb
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo
+    logging:
+      driver: none
+  mongo-seed:
+    build:
+      context: ./fixtures
+      args:
+        MONGO_HOST: mongodb
+    depends_on:
+      - mongodb
